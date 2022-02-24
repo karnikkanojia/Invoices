@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useAuth } from "../../contexts/AuthContext";
-import axios from "axios";
 
 import "./Navbar.css";
 import logo from "../../assets/logo.svg";
@@ -10,17 +9,15 @@ import avatar from "../../assets/avatar.png";
 
 const Navbar = () => {
   const history = useHistory();
-  const [error, setError] = useState("");
   const [avatarImage, setavatarImage] = useState('');
-  const { currentUser, logout, getEmail } = useAuth();
+  const { logout, getEmail } = useAuth();
 
   const handleLogout = async () => {
-    setError("");
     try {
       await logout();
       history.push("/login");
     } catch {
-      setError('Failed to Logout');
+      alert('Failed to Logout');
     }
   };
 

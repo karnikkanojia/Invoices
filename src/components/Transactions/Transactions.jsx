@@ -1,27 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "../Cards/Cards";
 import Empty from "../../assets/empty.svg";
+import { db } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { useAuth } from "../../contexts/AuthContext";
+import moment from "moment";
 
-// const temp = [
-//   {
-//     id: 'RT3080',
-//     date: '19 Aug 2021',
-//     name: 'Karnik Kanojia',
-//     amount: '1800.90',
-//     status: 'paid'
-//   },
-//   {
-//     id: 'XM9141',
-//     date: '12 Aug 2021',
-//     name: 'Mihir SP',
-//     amount: '2800.90',
-//     status: 'pending'
-//   }
-// ]
+const Transactions = () => {
+  
+  const collectionRef = collection(db, 'Bills');
+  const { getEmail } = useAuth();
+  const [transactions, setTransactions] = useState([]);
 
-const Transactions = ({ transactions }) => {
+  const emailNow = getEmail();
+  useEffect(() => {
+    
+    const getData = async () => {
+      const data = await getDocs(collectionRef);
+      setTransactions(data?.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+    };
 
-  if(transactions.length === 0) {
+    getData();
+  }, []);
+
+  const myInvoices = transactions.filter(({ email }) => email===emailNow);
+
+  if(myInvoices.length === 0) {
 
     return (
       <div className="d-flex flex-column align-items-center w-100">
@@ -43,9 +47,10 @@ const Transactions = ({ transactions }) => {
   return (
 
     <div className="app__transaction-container">
-        {transactions.map(({id, date, name, amount, status}) => (
-            <Cards key={id+name} id={id} date={date} name={name} amount={amount} status={status} />
-        ))}
+        {transactions.map(({id, time, name, amount, status, email}) => {
+            if(email===emailNow)
+              return <Cards key={id+name} id={id} date={moment.unix(time.seconds).format('Do MMM YYYY')} name={name} amount={amount} status={status} />
+        })}
     </div>
   );
 };

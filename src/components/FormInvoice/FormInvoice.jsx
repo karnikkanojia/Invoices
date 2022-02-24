@@ -1,18 +1,19 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Alert } from "react-bootstrap";
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
+
+import { useAuth } from "../../contexts/AuthContext";
 import {
   Form,
   Input,
   InputNumber,
-  Cascader,
   Select,
   DatePicker,
-  Row,
-  Col,
-  Checkbox,
   Button,
-  AutoComplete,
 } from "antd";
+
+import { Timestamp } from "firebase/firestore";
 
 const config = {
   rules: [
@@ -24,38 +25,46 @@ const config = {
   ],
 };
 
-const areas = [
-  { label: 'Beijing', value: 'Beijing' },
-  { label: 'Shanghai', value: 'Shanghai' },
+const status = [
+  { label: 'Paid', value: 'paid' },
+  { label: 'Pending', value: 'pending' },
 ];
 
-const { RangePicker } = DatePicker;
-
-const { Option } = Select;
-
 const FormInvoice = () => {
+  const { getEmail } = useAuth();
+  const collectionRef = collection(db, 'Bills');
+  const [ error, setError] = useState('');
 
-  const [form] = Form.useForm();
-  
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const emailNow = getEmail();
+  const onFinish = async (values) => {
+    try {
+      await addDoc(collectionRef, {
+        name: values.name,
+        time: Timestamp.fromDate(new Date(values['date-picker'].format('MMMM D, YYYY'))),
+        amount: values.amount,
+        status: values.status,
+        email: emailNow
+      });
+      window.location.reload();
+    }
+    catch(err) {
+      console.log(err);
+      setError('New Invoice not created');
+    }
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const handleChange = () => {
-    form.setFieldsValue({ sights: [] });
-  };
-
   return (
     <Container
     id="add-invoice"
     className="d-flex justify-content-center align-items-center"
-    style={{ minHeight: "100vh" }}
-  >
+    >
     <div className="w-100" style={{ maxWidth: "400px" }}>
+      <div className="d-flex justify-content-center mb-4"><strong style={{ fontSize: '20px' }}>Insert Invoice</strong></div>
+      {error && <Alert variant="danger">{error}</Alert>}
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -76,7 +85,7 @@ const FormInvoice = () => {
         <Form.Item
           label="Amount (in $)"
           name="amount"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: "Please input the amount!" }]}
         >
           <InputNumber />
         </Form.Item>
@@ -85,14 +94,14 @@ const FormInvoice = () => {
           <DatePicker />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
+        <Form.Item name="status" label="Status" rules={[{ required: true, message: 'Missing Status' }]}>
+          <Select options={status} />
         </Form.Item>
 
-        <Form.Item name="area" label="Area" rules={[{ required: true, message: 'Missing area' }]}>
-          <Select options={areas} onChange={handleChange} />
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" htmlType="submit" style={{background: "rgb(115, 93, 245)", border: 'white'}}>
+            Submit
+          </Button>
         </Form.Item>
       </Form>
     </div>

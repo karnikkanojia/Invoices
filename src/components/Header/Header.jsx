@@ -38,7 +38,7 @@ const Header = ({ count }) => {
           </Dropdown>
         </div>
         <div className="app__header-button">
-          <a path='#add-invoice'>
+          <a href='#add-invoice'>
             <Button type="primary" icon={<PlusCircleOutlined />} shape="round" style={{ background: "rgb(115, 93, 245)", borderColor: "white", display: 'flex', alignItems: 'center' }} >
               <span className="bold-text">Add</span>
             </Button>

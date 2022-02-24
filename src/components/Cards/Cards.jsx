@@ -27,7 +27,7 @@ const Cards = ({date, amount, id, status, name}) => {
     <div className='app__card-wrapper'>
       <div className="card-numerical">
         <div className="card-id">
-          <span className='dimmed-text'>#</span><span className='bold-text'>{id}</span>
+          <span className='dimmed-text'>#</span><span className='bold-text'>{id.slice(0,5).toUpperCase()}</span>
         </div>
         <div className="date-amount">
           <div className="transaction-date">
