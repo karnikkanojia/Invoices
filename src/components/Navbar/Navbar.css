@@ -1,0 +1,60 @@
+.app__navbar {
+    background-color: rgb(59, 62, 83);
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app__navbar-logo {
+    background-color: rgb(115, 93, 245);
+    height: 100%;
+    width: 8vh;
+    border-radius: 0 25% 25% 0;
+    position: relative;
+}
+
+.app__navbar-logo-top {
+    height: 50%;
+    width: 100%;
+}
+
+.app__navbar-logo-bottom {
+    height: 50%;
+    width: 100%;
+    border-radius: 25% 0 0 0;
+    background-color: rgb(138, 118, 251);
+}
+
+#logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.app__navbar-avatar {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app__navbar-avatar-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 8vh;
+    border-left: 2px solid;
+    border-left-color: rgb(76, 79, 109);
+}
+
+#avatar {
+    height: auto;
+    width: 80%;
+    border-radius: 50%;
+}

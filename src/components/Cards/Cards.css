@@ -1,0 +1,85 @@
+.app__card-wrapper {
+  height: 20vh;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 20%);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.card-numerical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 50%;
+}
+
+.transaction-status {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+  justify-content: space-evenly;
+  align-items: flex-end;
+}
+
+.bold-text {
+  font-weight: 700;
+}
+
+.bold-text-bigger {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.date-amount {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  justify-content: space-evenly;
+}
+
+@media screen and (min-width: 700px) {
+  .card-numerical {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .payee-name {
+    margin: 0 auto;
+  }
+
+  .transaction-status {
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+  }
+
+  .date-amount {
+    flex-direction: row;
+    width: 60%;
+    height: auto;
+    justify-content: space-between;
+  }
+
+  .transaction-date {
+    display: flex;
+    align-items: center;
+  }
+
+  .app__card-wrapper {
+    justify-content: space-evenly;
+  }
+
+  .card-numerical div {
+    margin: 0 auto;
+  }
+
+  .card-numerical {
+    width: 100%;
+  }
+}

@@ -1,0 +1,34 @@
+.app__header {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    justify-content: space-between;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+}
+
+.ant-dropdown-link,
+li.ant-dropdown-menu-item > span > label > span,
+.ant-checkbox > span,
+.bold-text {
+    font-weight: 700;
+}
+
+.ant-dropdown-link {
+    display: flex;
+    align-items: center;
+}
+
+.app__header-feature {
+    display: flex;
+}
+
+.ant-dropdown-link {
+    display: flex;
+    height: 100%;
+    align-content: center;
+}
+
