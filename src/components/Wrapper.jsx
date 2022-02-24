@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { Header, Transactions, Navbar } from './';
+import { Header, Transactions, Navbar, FormInvoice } from './';
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Wrapper = () => {
-
   const [transactions, setTransactions] = useState([]);
-
-
 
   return (
     <div className='app__wrapper'>
@@ -15,6 +12,7 @@ const Wrapper = () => {
         <div className='pad-around'>
           <Header />
           <Transactions transactions={transactions} />
+          <FormInvoice />
         </div>
     </div>
   )

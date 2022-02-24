@@ -8,4 +8,5 @@ export { default as Wrapper } from './Wrapper';
 export { default as ForgotPassword } from './ForgotPassword';
 export { default as PrivateRoute } from './PrivateRoute';
 export { default as UpdateProfile } from './UpdateProfile';
+export { default as FormInvoice } from './FormInvoice/FormInvoice';
 

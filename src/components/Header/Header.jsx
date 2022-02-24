@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 import { Menu, Dropdown, Checkbox, Button } from "antd";
 import { DownOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
@@ -37,9 +38,11 @@ const Header = ({ count }) => {
           </Dropdown>
         </div>
         <div className="app__header-button">
-          <Button type="primary" icon={<PlusCircleOutlined />} shape="round" style={{ background: "rgb(115, 93, 245)", borderColor: "white", display: 'flex', alignItems: 'center' }} >
-            <span className="bold-text">Add</span>
-          </Button>
+          <a path='#add-invoice'>
+            <Button type="primary" icon={<PlusCircleOutlined />} shape="round" style={{ background: "rgb(115, 93, 245)", borderColor: "white", display: 'flex', alignItems: 'center' }} >
+              <span className="bold-text">Add</span>
+            </Button>
+          </a>
         </div>
       </div>
     </div>
