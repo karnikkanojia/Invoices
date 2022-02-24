@@ -34,7 +34,7 @@ export default function Signup() {
   return (
     <>
       <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh'}}>
-        <div className="w-100" style={{ minWidth: 'min(80%, 400px)'}}>
+        <div className="w-100" style={{ maxWidth: '400px'}}>
           <Card>
             <Card.Body>
               <h2 className="text-center mb-4">Sign Up</h2>

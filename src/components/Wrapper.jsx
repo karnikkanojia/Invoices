@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Navbar, Transactions } from './';
+import { Header, Transactions, Navbar } from './';
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Wrapper = () => {
   return (
     <div className='app__wrapper'>
-        <Navbar />
+        <Navbar/>
         <div className='pad-around'>
           <Header />
           <Transactions />

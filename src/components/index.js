@@ -5,5 +5,7 @@ export { default as Transactions } from './Transactions/Transactions';
 export { default as Signup } from './Signup';
 export { default as Login } from './Login';
 export { default as Wrapper } from './Wrapper';
+export { default as ForgotPassword } from './ForgotPassword';
+
 
 
