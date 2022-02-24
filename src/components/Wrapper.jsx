@@ -3,10 +3,11 @@ import { Header, Transactions, Navbar } from './';
 import 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 const Wrapper = () => {
 
   const [transactions, setTransactions] = useState([]);
+
+
 
   return (
     <div className='app__wrapper'>

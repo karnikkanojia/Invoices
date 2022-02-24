@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useAuth } from "../../contexts/AuthContext";
+import axios from "axios";
 
 import "./Navbar.css";
 import logo from "../../assets/logo.svg";
@@ -10,7 +11,8 @@ import avatar from "../../assets/avatar.png";
 const Navbar = () => {
   const history = useHistory();
   const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
+  const [avatarImage, setavatarImage] = useState('');
+  const { currentUser, logout, getEmail } = useAuth();
 
   const handleLogout = async () => {
     setError("");
@@ -21,6 +23,11 @@ const Navbar = () => {
       setError('Failed to Logout');
     }
   };
+
+  useEffect(() => {
+    const email = getEmail();
+    setavatarImage(`https://ui-avatars.com/api/?name=${email}`);
+  }, []);
 
   const userMenu = (
     <Menu>
@@ -51,7 +58,7 @@ const Navbar = () => {
       <div className="app__navbar-avatar-image">
         <Dropdown overlay={userMenu} trigger={["click"]}>
           <p style={{ margin: "auto 0"}} className="d-flex ant-dropdown-link w-100 justify-content-center align-items-center" onClick={(e) => e.preventDefault()}>
-            <img src={avatar} alt="avatar" id="avatar"/>
+            <img src={avatarImage !== '' ?  avatarImage : avatar} alt="avatar" id="avatar"/>
           </p>
         </Dropdown>
       </div>
