@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cards from "../Cards/Cards";
+import Empty from "../../assets/empty.svg";
 
 const temp = [
   {
@@ -18,8 +19,25 @@ const temp = [
   }
 ]
 
-const Transactions = () => {
-  const [transactions, setTransactions] = useState([]);
+const Transactions = ({ transactions }) => {
+
+  if(!transactions || transactions.length) {
+    return (
+      <div className="d-flex flex-column align-items-center w-100">
+        <div className="empty-list-image">
+          <img src={Empty} alt="empty-list" />
+        </div>
+        <div className="content m-5">
+          <div className="bold-text text-center" style={{ fontSize: '20px'}}>
+            There is nothing here
+          </div>
+          <div className="passive-text text-center m-2" style={{ maxWidth: '280px', fontSize: '12px'}}>
+          Create an invoice by clicking the <strong>New Invoice</strong> button and get started, or change the <strong>Filter by Status</strong>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="app__transaction-container">
