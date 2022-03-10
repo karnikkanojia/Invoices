@@ -53,7 +53,7 @@ const Navbar = () => {
         <img src={logo} alt="logo" id="logo" />
       </div>
       <div className="app__navbar-avatar-image">
-        <Dropdown overlay={userMenu} trigger={["click"]}>
+        <Dropdown overlay={userMenu} trigger={["click"]} style={{left: '420px'}}>
           <p style={{ margin: "auto 0"}} className="d-flex ant-dropdown-link w-100 justify-content-center align-items-center" onClick={(e) => e.preventDefault()}>
             <img src={avatarImage !== '' ?  avatarImage : avatar} alt="avatar" id="avatar"/>
           </p>

@@ -58,3 +58,9 @@
     width: 80%;
     border-radius: 50%;
 }
+
+@media screen and (max-width: 576.5px) {
+    .ant-dropdown {
+        left: 427px !important;
+    }       
+}

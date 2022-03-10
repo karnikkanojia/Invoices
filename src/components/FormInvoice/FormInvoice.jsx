@@ -45,6 +45,13 @@ const FormInvoice = () => {
         status: values.status,
         email: emailNow
       });
+      console.log({
+        name: values.name,
+        time: Timestamp.fromDate(new Date(values['date-picker'].format('MMMM D, YYYY'))),
+        amount: values.amount,
+        status: values.status,
+        email: emailNow
+      });
       window.location.reload();
     }
     catch(err) {
